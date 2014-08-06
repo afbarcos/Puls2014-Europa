@@ -203,4 +203,11 @@ h2{
 	margin-top: 3px;
 	box-sizing: border-box;
 }
-#contenido 
+
+
+/* FORMULARIO */
+
+.formulario{
+	text-align: right;
+	padding: 1em;
+}
