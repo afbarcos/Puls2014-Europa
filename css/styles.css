@@ -210,4 +210,5 @@ h2{
 .formulario{
 	text-align: right;
 	padding: 1em;
+	display: none;
 }
