@@ -1,26 +1,44 @@
 var $form = $('#formulario'),
  	$titulo = $('#titulo'),
-	$url = $('#url');
+	$url = $('#url'),
 	$primerPost = $('.item').first(),
 	$lista = $('#contenido');
 
 function muestra(){
-	$(formulario).slideToggle();
+	$form.slideToggle();
+	$lista.slideToggle();
 	return false;
 };
 
-function agregarPost(){
+function carga(e){
+	e.preventDefault();
+	var $titulo = $('#titulo').val(),
+		$url = $('#url').val(),
+		clonado = $primerPost.clone(),
+		clonadoData = clonado.find('.titulo_item a').text($titulo).attr('href', $url);
+	$lista.prepend(clonado);
+	$('#titulo').val('');
+	$('#url').val('');
+	muestra();
+};
+
+function grabarInformacion(e){
+	e.preventDefault();
 	var titulo = $titulo.val(),
-		url = $url.val(),
-		clone = $primerPost.clone();
-		clone.find('.titulo_item a').text(titulo).attr('href', url);
-		clone.hide();
-		$lista.prepend(clone);
-		clone.slideDown();
+		url    = $url.val(),
+		ls 	   = localStorage,
+		ss	   = sessionStorage;
+
+	ls.setItem('titulo', titulo);
+	ls.setItem('url', url);
+
+	ss.setItem('titulo', titulo);
+	ss.setItem('url', url);
 };
 
 $('#publicar_nav a').click(muestra);
-$('#formulario').on('submit', agregarPost);
+$form.on('submit', /*carga*/ grabarInformacion);
+
 
 
 
