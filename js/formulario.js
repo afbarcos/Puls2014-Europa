@@ -1,8 +1,15 @@
-var $form = $('#formulario'),
- 	$titulo = $('#titulo'),
-	$url = $('#url'),
+var $form 		= $('#formulario'),
+ 	$titulo 	= $('#titulo'),
+	$url 		= $('#url'),
 	$primerPost = $('.item').first(),
-	$lista = $('#contenido');
+	$lista 		= $('#contenido'),
+	ss 			= sessionStorage,
+	ls   		= localStorage;
+
+if(ls.getItem('autosave')){
+	$titulo.val(ss.getItem('titulo'));
+	$url.val(ss.getItem('url'));
+}
 
 function muestra(){
 	$form.slideToggle();
@@ -37,7 +44,7 @@ function grabarInformacion(e){
 };
 
 $('#publicar_nav a').click(muestra);
-$form.on('submit', /*carga*/ grabarInformacion);
+$form.on('submit', carga /*grabarInformacion*/);
 
 
 
